@@ -23,23 +23,7 @@ public class ConsoleUI {
     private static final HumanBeingControllerImpl userController = new HumanBeingControllerImpl(new HumanBeingServiceImpl(new HumanBeingDAOImpl()));
 
     public static void menu(){
-        System.out.println(GREEN_BRIGHT + "Добро пожаловать! Введите команду для продолжения\n" + GREEN_BRIGHT +
-                "   help : "+ WHITE + "вывести справку по доступным командам\n" + GREEN_BRIGHT +
-                "   info : "+ WHITE + "вывести в стандартный поток вывода информацию о коллекции (тип, дата инициализации, количество элементов и т.д.)\n" + GREEN_BRIGHT +
-                "   show : "+ WHITE + "вывести в стандартный поток вывода все элементы коллекции в строковом представлении\n" + GREEN_BRIGHT +
-                "   add : "+ WHITE + "добавить новый элемент в коллекцию\n" + GREEN_BRIGHT +
-                "   update id : "+ WHITE + "обновить значение элемента коллекции, id которого равен заданному\n" + GREEN_BRIGHT +
-                "   remove_by_id id : "+ WHITE + "удалить элемент из коллекции по его id\n" + GREEN_BRIGHT +
-                "   clear : "+ WHITE + "очистить коллекцию\n" + GREEN_BRIGHT +
-                "   save : "+ WHITE + "сохранить коллекцию в файл\n" + GREEN_BRIGHT +
-                "   execute_script file_name : "+ WHITE + "считать и исполнить скрипт из указанного файла. В скрипте содержатся команды в таком же виде, в котором их вводит пользователь в интерактивном режиме.\n" + GREEN_BRIGHT +
-                "   exit : "+ WHITE + "завершить программу (без сохранения в файл)\n" + GREEN_BRIGHT +
-                "   add_if_max {element} : "+ WHITE + "добавить новый элемент в коллекцию, если его значение превышает значение наибольшего элемента этой коллекции\n" + GREEN_BRIGHT +
-                "   add_if_min {element} : "+ WHITE + "добавить новый элемент в коллекцию, если его значение меньше, чем у наименьшего элемента этой коллекции\n" + GREEN_BRIGHT +
-                "   history : "+ WHITE + "вывести последние 15 команд (без их аргументов)\n" + GREEN_BRIGHT +
-                "   max_by_impact_speed : "+ WHITE + "вывести любой объект из коллекции, значение поля impactSpeed которого является максимальным\n" + GREEN_BRIGHT +
-                "   count_by_mood mood : "+ WHITE + "вывести количество элементов, значение поля mood которых равно заданному\n" + GREEN_BRIGHT +
-                "   print_ascending : "+ WHITE + "вывести элементы коллекции в порядке возрастания\n");
+        System.out.println(MenuConstants.HELP);
     }
 
     // #TODO реализовать НОРМАЛЬНЫЙ подсчет аргументов в команде
@@ -129,10 +113,10 @@ public class ConsoleUI {
                         userController.addIfMin(Asker.humanBeingRequestDTOBuilder().build());
                         break;
                     case "history":
-                        if (commandsList.size() < 15){
+                        if (commandsList.size() < MenuConstants.HISTORY_SIZE){
                             System.out.println(commandsList);
                         } else{
-                            for(int i = 1; i <= 15; i++){
+                            for(int i = 1; i <= MenuConstants.HISTORY_SIZE; i++){
                                 System.out.print(commandsList.get(commandsList.size() - i) + " ");
                             }
                         }

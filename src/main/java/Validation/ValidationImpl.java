@@ -3,7 +3,6 @@ package Validation;
 import exception.ValidationException;
 import model.Coordinates;
 import model.Mood;
-import ui.ConsoleColors;
 
 import java.util.function.Function;
 
