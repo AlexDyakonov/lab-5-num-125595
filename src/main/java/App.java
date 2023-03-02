@@ -1,4 +1,4 @@
-import ui.ConsoleUI;
+import client.ui.ConsoleUI;
 
 /**
  * The type App.
