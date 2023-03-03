@@ -1,6 +1,7 @@
 package server.services.file_logic;
 
 import client.utility.AbstractAsker;
+import client.utility.Convertor;
 import client.utility.HumanBeingRequestDTOBuilder;
 import server.exception.ValidationException;
 import server.model.Car;
@@ -60,19 +61,10 @@ public class FileAsker extends AbstractAsker {
 
     public Boolean readBool() {
         try {
-            String ans = reader.readLine();
-            switch (ans.toLowerCase()) {
-                case "true", "t" -> {
-                    return true;
-                }
-                case "false", "f" -> {
-                    return false;
-                }
-                default -> throw new ValidationException(
-                    "Вы ввели неверное значение, необходимо true/false");
-            }
-        } catch (IOException e) {
-            throw new RuntimeException("Не удалось открыть поток чтения. Повторите.");
+            return Convertor.toBoolean(readString());
+        } catch (ValidationException e) {
+            System.out.println(e.getMessage());
+            throw new RuntimeException(); //TODO тут чет другое должно быть
         }
     }
 
@@ -135,43 +127,11 @@ public class FileAsker extends AbstractAsker {
     }
 
     public Mood mood() {
-        switch (readString().toLowerCase().trim()) {
-            case "sorrow", "1" -> {
-                return Mood.SORROW;
-            }
-            case "gloom", "2" -> {
-                return Mood.GLOOM;
-            }
-            case "apathy", "3" -> {
-                return Mood.APATHY;
-            }
-            case "calm", "4" -> {
-                return Mood.CALM;
-            }
-            case "rage", "5" -> {
-                return Mood.RAGE;
-            }
-            default -> throw new ValidationException(
-                "Вы ввели значение не из списка. Настроение не может быть null.");
-        }
+        return Convertor.toMood(readString());
     }
 
     public WeaponType weaponType() {
-        switch (readString().toLowerCase().trim()) {
-            case "axe", "1" -> {
-                return WeaponType.AXE;
-            }
-            case "shotgun", "2" -> {
-                return WeaponType.SHOTGUN;
-            }
-            case "bat", "3" -> {
-                return WeaponType.BAT;
-            }
-            case "null", "0", "" -> {
-                return null;
-            }
-            default -> throw new ValidationException("Вы ввели значение не из списка");
-        }
+        return Convertor.toWT(readString());
     }
 
     public Car car() {

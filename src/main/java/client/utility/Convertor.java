@@ -13,7 +13,7 @@ import static client.ui.ConsoleColors.*;
 /**
  * The type Converter.
  */
-public class Converter {
+public class Convertor {
     /**
      * To str string.
      *
