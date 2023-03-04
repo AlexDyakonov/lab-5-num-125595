@@ -121,11 +121,11 @@ public class FileAsker extends AbstractAsker {
 
 
     public Mood mood() {
-        return Convertor.toMood(readString());
+        return Convertor.toMood(readString(), "file");
     }
 
     public WeaponType weaponType() {
-        return Convertor.toWT(readString());
+        return Convertor.toWeaponType(readString(), "file");
     }
 
     public Car car() {

@@ -8,7 +8,7 @@ import server.model.WeaponType;
 
 import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
+
 /**
  * The type Console asker.
  */
@@ -126,12 +126,12 @@ public class ConsoleAsker extends AbstractAsker {
 
     public Mood mood() {
         System.out.println("Введите настроение HumanBeing: (SORROW - 1, GLOOM - 2, APATHY - 3, CALM - 4, RAGE - 5)");
-        return Convertor.toMood(readString());
+        return Convertor.toMood(readString(), "cmd");
     }
 
     public WeaponType weaponType() {
         System.out.println("Введите оружие HumanBeing: (AXE - 1, SHOTGUN - 2, BAT - 3, null - 0)");
-        return Convertor.toWT(readString());
+        return Convertor.toWeaponType(readString(), "cmd");
     }
 
     public Car car() {

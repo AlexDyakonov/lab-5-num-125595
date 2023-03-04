@@ -7,10 +7,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6ea2767c-74c4-4051-9819-b05d03d800e2" name="Changes" comment="Removed a lot of code duplication. Added more abstraction in Asker methods">
+    <list default="true" id="6ea2767c-74c4-4051-9819-b05d03d800e2" name="Changes" comment="Fixed infinite loop bug with command input">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/client/ui/ConsoleUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/client/ui/ConsoleUI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/server/services/CommandExecutor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/server/services/CommandExecutor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database.csv" beforeDir="false" afterPath="$PROJECT_DIR$/database.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/client/utility/ConsoleAsker.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/client/utility/ConsoleAsker.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/client/utility/Convertor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/client/utility/Convertor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/server/services/file_logic/FileAsker.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/server/services/file_logic/FileAsker.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/server/services/file_logic/FileManagerImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/server/services/file_logic/FileManagerImpl.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -130,7 +133,7 @@
       <workItem from="1677771664254" duration="1250000" />
       <workItem from="1677872719894" duration="33000" />
       <workItem from="1677890025768" duration="855000" />
-      <workItem from="1677925643075" duration="5230000" />
+      <workItem from="1677925643075" duration="7072000" />
     </task>
     <task id="LOCAL-00001" summary="Fixed README.md">
       <created>1675978382310</created>
@@ -286,7 +289,14 @@
       <option name="project" value="LOCAL" />
       <updated>1677936602591</updated>
     </task>
-    <option name="localTasksCounter" value="23" />
+    <task id="LOCAL-00023" summary="Fixed infinite loop bug with command input">
+      <created>1677937302406</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1677937302406</updated>
+    </task>
+    <option name="localTasksCounter" value="24" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -338,6 +348,7 @@
     <MESSAGE value="Some fixes" />
     <MESSAGE value="Added javadoc documentation" />
     <MESSAGE value="Removed a lot of code duplication. Added more abstraction in Asker methods" />
-    <option name="LAST_COMMIT_MESSAGE" value="Removed a lot of code duplication. Added more abstraction in Asker methods" />
+    <MESSAGE value="Fixed infinite loop bug with command input" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed infinite loop bug with command input" />
   </component>
 </project>

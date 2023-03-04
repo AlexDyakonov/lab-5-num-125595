@@ -48,7 +48,7 @@ public class FileManagerImpl implements FileManager{
             HumanBeingResponseDTOBuilder humanBeingResponseDTOBuilder = new HumanBeingResponseDTOBuilder();
             humanBeingResponseDTOBuilder.setId(split[0]).setName(toStr(split[1])).setCoordinates(toCoordinates(split[2]));
             humanBeingResponseDTOBuilder.setCreationDate(toLocalDateTime(split[3])).setRealHero(toBoolean(split[4])).setHasToothpick(toBoolean(split[5]));
-            humanBeingResponseDTOBuilder.setImpactSpeed(toFloat(split[6])).setSoundtrackName(toStr(split[7])).setWeaponType(toWT(split[8])).setMood(toMood(split[9]));
+            humanBeingResponseDTOBuilder.setImpactSpeed(toFloat(split[6])).setSoundtrackName(toStr(split[7])).setWeaponType(toWeaponType(split[8], "file")).setMood(toMood(split[9], "file"));
             humanBeingResponseDTOBuilder.setCar(toCar(split[10]));
             return humanBeingResponseDTOBuilder.buildHumanBeing();
         } catch (ValidationException e) {
@@ -84,7 +84,9 @@ public class FileManagerImpl implements FileManager{
             File database = new File(path);
             FileReader fileReader = new FileReader(database);
             BufferedReader bufferedReader = new BufferedReader(fileReader);
-            String element = bufferedReader.readLine();
+
+            String skipsFirstLine = bufferedReader.readLine();
+
             while ((line = bufferedReader.readLine()) != null){
                 try {
                     humanBeingSet.add(parseCSVToHumanBeing(line));

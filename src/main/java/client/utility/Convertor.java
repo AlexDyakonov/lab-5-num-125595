@@ -1,5 +1,6 @@
 package client.utility;
 
+import server.exception.ApplicationException;
 import server.exception.FileException;
 import server.exception.ValidationException;
 import server.model.Coordinates;
@@ -121,21 +122,30 @@ public class Convertor {
      * @param line the line
      * @return the weapon type
      */
-    public static WeaponType toWT(String line){
+    public static WeaponType toWeaponType(String line, String usage){
         switch (line.trim().toLowerCase()){
-            case "axe" -> {
+            case "axe", "1" -> {
                 return WeaponType.AXE;
             }
-            case "shotgun" -> {
+            case "shotgun", "2" -> {
                 return WeaponType.SHOTGUN;
             }
-            case "bat" -> {
+            case "bat", "3" -> {
                 return WeaponType.BAT;
             }
-            case "(null)", "null", "" -> {
+            case "(null)", "null", "", "0" -> {
                 return null;
             }
-            default -> throw new ValidationException(RED + line + RED_BRIGHT + " не соответствует требованию. Значения WeaponType могут быть AXE, SHOTGUN, BAT, null. Запись будет проигнорирована."+ RESET);
+            default -> {
+                switch (usage){
+                    case "cmd" ->
+                            throw new ValidationException(RED + line + RED_BRIGHT + " не соответствует требованию. Значения WeaponType могут быть AXE, SHOTGUN, BAT, null. Введите еще раз."+ RESET);
+                    case "file" ->
+                            throw new ValidationException(RED + line + RED_BRIGHT + " не соответствует требованию. Значения WeaponType могут быть AXE, SHOTGUN, BAT, null. Запись будет проигнорирована."+ RESET);
+                    default ->
+                        throw new ApplicationException("Введен неверный аргумент в команде toWeaponType");
+                }
+            }
         }
     }
 
@@ -145,24 +155,33 @@ public class Convertor {
      * @param line the line
      * @return the mood
      */
-    public static Mood toMood(String line){
+    public static Mood toMood(String line, String usage){
         switch (line.trim().toLowerCase()){
-            case "sorrow" -> {
+            case "sorrow", "1" -> {
                 return Mood.SORROW;
             }
-            case "gloom" -> {
+            case "gloom", "2" -> {
                 return Mood.GLOOM;
             }
-            case "apathy" -> {
+            case "apathy", "3" -> {
                 return Mood.APATHY;
             }
-            case "calm"-> {
+            case "calm", "4" -> {
                 return Mood.CALM;
             }
-            case "rage" -> {
+            case "rage", "5" -> {
                 return Mood.RAGE;
             }
-            default -> throw new ValidationException(RED + line + RED_BRIGHT + " не соответствует требованию.  Значения Mood могут быть SORROW, GLOOM, APATHY, CALM, RAGE. Запись будет проигнорирована."+ RESET);
+            default -> {
+                switch (usage){
+                    case "cmd" ->
+                            throw new ValidationException(RED + line + RED_BRIGHT + " не соответствует требованию. Значения Mood могут быть SORROW, GLOOM, APATHY, CALM, RAGE. Введите еще раз."+ RESET);
+                    case "file" ->
+                            throw new ValidationException(RED + line + RED_BRIGHT + " не соответствует требованию. Значения Mood могут быть SORROW, GLOOM, APATHY, CALM, RAGE. Запись будет проигнорирована."+ RESET);
+                    default ->
+                            throw new ApplicationException("Введен неверный аргумент в команде Mood.");
+                }
+            }
         }
     }
 }
