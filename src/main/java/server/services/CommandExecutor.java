@@ -2,7 +2,7 @@ package server.services;
 
 import client.ui.MenuConstants;
 import client.utility.AbstractAsker;
-import client.utility.HumanBeingRequestDTOBuilder;
+import client.utility.askerForHumanBeingRequestDTOBuilder;
 import server.controller.HumanBeingController;
 import server.controller.HumanBeingControllerImpl;
 import server.exception.ArgumentException;
@@ -19,13 +19,13 @@ public class CommandExecutor {
 
     private final HumanBeingController humanBeingController;
     private final AbstractAsker asker;
-    private HumanBeingRequestDTOBuilder humanBeingRequestDTOBuilder;
+    private askerForHumanBeingRequestDTOBuilder humanBeingRequestDTOBuilder;
     private final List<String> commandsList;
 
     public CommandExecutor(AbstractAsker asker) {
         this.asker = asker;
         this.humanBeingController = new HumanBeingControllerImpl();
-        this.humanBeingRequestDTOBuilder = new HumanBeingRequestDTOBuilder();
+        this.humanBeingRequestDTOBuilder = new askerForHumanBeingRequestDTOBuilder();
         this.commandsList = new ArrayList<>();
     }
 
@@ -49,27 +49,27 @@ public class CommandExecutor {
         String id;
 
         switch (command) {
-            case "help":
+            case "help" -> {
                 checkCommandArg(commandArgs, 0);
                 menu();
-                break;
-            case "info":
+            }
+            case "info" -> {
                 checkCommandArg(commandArgs, 0);
                 System.out.println(humanBeingController.info());
-                break;
-            case "show":
+            }
+            case "show" -> {
                 checkCommandArg(commandArgs, 0);
                 System.out.println(humanBeingController.show());
                 System.out.println("Выведены все элементы коллекции. ");
-                break;
-            case "add":
+            }
+            case "add" -> {
                 checkCommandArg(commandArgs, 0);
                 humanBeingRequestDTOBuilder = asker.humanBeingRequestDTOBuilder();
                 System.out.println(
                         humanBeingController.addElementToCollection(humanBeingRequestDTOBuilder.build())
                                 .toString() + " был добавлен");
-                break;
-            case "update":
+            }
+            case "update" -> {
                 checkCommandArg(commandArgs, 1);
                 try {
                     id = (commandArgs[1]);
@@ -86,8 +86,8 @@ public class CommandExecutor {
                     System.out.println("Значение " + commandArgs[1]
                             + "не является id. Вызовите команду еще раз.");
                 }
-                break;
-            case "remove_by_id":
+            }
+            case "remove_by_id" -> {
                 checkCommandArg(commandArgs, 1);
                 try {
                     id = (commandArgs[1]);
@@ -96,37 +96,36 @@ public class CommandExecutor {
                     System.out.println("Значение " + commandArgs[1]
                             + "не является id. Вызовите команду еще раз.");
                 }
-                break;
-            case "clear":
+            }
+            case "clear" -> {
                 checkCommandArg(commandArgs, 0);
                 int amount = humanBeingController.getSize();
                 humanBeingController.clear();
                 System.out.println("Коллекция успешно очищена. Было удалено " + amount
                         + " элементов.");
-                break;
-            case "save":
+            }
+            case "save" -> {
                 checkCommandArg(commandArgs, 0);
                 System.out.println("Cохранить в csv файл");
                 humanBeingController.save();
-                break;
-            case "execute_script":
+            }
+            case "execute_script" -> {
                 checkCommandArg(commandArgs, 1);
                 System.out.println("запуск скрипта");
-
                 ScriptExecutor scriptExecutor = new ScriptExecutor();
                 scriptExecutor.executeScript("file name from args");
-                break;
-            case "add_if_max":
+            }
+            case "add_if_max" -> {
                 checkCommandArg(commandArgs, 0);
                 humanBeingController.addIfMax(
                         asker.humanBeingRequestDTOBuilder().build());
-                break;
-            case "add_if_min":
+            }
+            case "add_if_min" -> {
                 checkCommandArg(commandArgs, 0);
                 humanBeingController.addIfMin(
                         asker.humanBeingRequestDTOBuilder().build());
-                break;
-            case "history":
+            }
+            case "history" -> {
                 checkCommandArg(commandArgs, 0);
                 if (commandsList.size() < MenuConstants.HISTORY_SIZE) {
                     System.out.println(commandsList);
@@ -135,27 +134,25 @@ public class CommandExecutor {
                         System.out.print(commandsList.get(commandsList.size() - i) + " ");
                     }
                 }
-                break;
-            case "max_by_impact_speed":
+            }
+            case "max_by_impact_speed" -> {
                 checkCommandArg(commandArgs, 0);
                 humanBeingController.maxByImpactSpeed();
                 System.out.println(GREEN_BRIGHT
                         + "Выведен элемент коллекции с максимальным Impact speed." + RESET);
-                break;
-            case "count_by_mood":
+            }
+            case "count_by_mood" -> {
                 checkCommandArg(commandArgs, 0);
                 humanBeingController.countByMood(asker.mood());
-                break;
-            case "print_ascending":
+            }
+            case "print_ascending" -> {
                 checkCommandArg(commandArgs, 0);
                 System.out.println(humanBeingController.printAscending());
                 System.out.println(
                         GREEN_BRIGHT + "Выведены элементы коллекции по возрастанию."
                                 + RESET);
-                break;
-            default:
-                System.out.println("Вы ввели значение не из меню");
-                break;
+            }
+            default -> System.out.println("Вы ввели значение не из меню");
         }
     }
 

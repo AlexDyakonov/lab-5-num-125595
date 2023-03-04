@@ -1,7 +1,8 @@
 package server.services.file_logic;
 
 import client.utility.AbstractAsker;
-import client.utility.HumanBeingRequestDTOBuilder;
+import client.utility.Convertor;
+import client.utility.askerForHumanBeingRequestDTOBuilder;
 import server.exception.ValidationException;
 import server.model.Car;
 import server.model.Coordinates;
@@ -60,17 +61,7 @@ public class FileAsker extends AbstractAsker {
 
     public Boolean readBool() {
         try {
-            String ans = reader.readLine();
-            switch (ans.toLowerCase()) {
-                case "true", "t" -> {
-                    return true;
-                }
-                case "false", "f" -> {
-                    return false;
-                }
-                default -> throw new ValidationException(
-                    "Вы ввели неверное значение, необходимо true/false");
-            }
+            return Convertor.toBoolean(reader.readLine());
         } catch (IOException e) {
             throw new RuntimeException("Не удалось открыть поток чтения. Повторите.");
         }
@@ -116,15 +107,8 @@ public class FileAsker extends AbstractAsker {
     public Coordinates coordinates() {
         Coordinates coordinates = new Coordinates();
         try {
-            String xStr = reader.readLine();
-            Integer x = Integer.parseInt(xStr);
-            String yStr = reader.readLine();
-            double y = Double.parseDouble(yStr);
-            if (y < -897) {
-                throw new ValidationException("Значение Y должно быть больше -897");
-            }
-            coordinates.setX(x);
-            coordinates.setY(y);
+            coordinates.setX(Convertor.getCoordinatesX(reader));
+            coordinates.setY(Convertor.getCoordinatesY(reader));
             return coordinates;
         } catch (IOException e) {
             System.out.println("Ошибка открытия потока чтения");
@@ -134,52 +118,22 @@ public class FileAsker extends AbstractAsker {
         return coordinates;
     }
 
+
+
     public Mood mood() {
-        switch (readString().toLowerCase().trim()) {
-            case "sorrow", "1" -> {
-                return Mood.SORROW;
-            }
-            case "gloom", "2" -> {
-                return Mood.GLOOM;
-            }
-            case "apathy", "3" -> {
-                return Mood.APATHY;
-            }
-            case "calm", "4" -> {
-                return Mood.CALM;
-            }
-            case "rage", "5" -> {
-                return Mood.RAGE;
-            }
-            default -> throw new ValidationException(
-                "Вы ввели значение не из списка. Настроение не может быть null.");
-        }
+        return Convertor.toMood(readString());
     }
 
     public WeaponType weaponType() {
-        switch (readString().toLowerCase().trim()) {
-            case "axe", "1" -> {
-                return WeaponType.AXE;
-            }
-            case "shotgun", "2" -> {
-                return WeaponType.SHOTGUN;
-            }
-            case "bat", "3" -> {
-                return WeaponType.BAT;
-            }
-            case "null", "0", "" -> {
-                return null;
-            }
-            default -> throw new ValidationException("Вы ввели значение не из списка");
-        }
+        return Convertor.toWT(readString());
     }
 
     public Car car() {
         return readCar();
     }
 
-    public HumanBeingRequestDTOBuilder humanBeingRequestDTOBuilder() {
-        HumanBeingRequestDTOBuilder humanBeingRequestDTOBuilder = new HumanBeingRequestDTOBuilder();
+    public askerForHumanBeingRequestDTOBuilder humanBeingRequestDTOBuilder() {
+        askerForHumanBeingRequestDTOBuilder humanBeingRequestDTOBuilder = new askerForHumanBeingRequestDTOBuilder();
         humanBeingRequestDTOBuilder
             .setName(name())
             .setCoordinates(coordinates())

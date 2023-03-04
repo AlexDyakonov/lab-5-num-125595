@@ -6,6 +6,8 @@ import server.model.Coordinates;
 import server.model.Mood;
 import server.model.WeaponType;
 
+import java.io.BufferedReader;
+import java.io.IOException;
 import java.time.LocalDateTime;
 
 import static client.ui.ConsoleColors.*;
@@ -13,7 +15,7 @@ import static client.ui.ConsoleColors.*;
 /**
  * The type Converter.
  */
-public class Converter {
+public class Convertor {
     /**
      * To str string.
      *
@@ -51,7 +53,12 @@ public class Converter {
             throw new FileException(RED + line + RED_BRIGHT + " не соответствует требованию. Impactspeed принимает числовое значение. Запись будет проигнорирована."+ RESET);
         }
     }
-
+    public static Integer getCoordinatesX(BufferedReader reader) throws IOException {
+        return Integer.parseInt(reader.readLine());
+    }
+    public static Double getCoordinatesY(BufferedReader reader) throws IOException {
+        return Double.parseDouble(reader.readLine());
+    }
     /**
      * To coordinates coordinates.
      *

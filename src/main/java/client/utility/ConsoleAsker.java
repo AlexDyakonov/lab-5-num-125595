@@ -9,11 +9,17 @@ import server.model.WeaponType;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-
 /**
  * The type Console asker.
  */
 public class ConsoleAsker extends AbstractAsker {
+    private final BufferedReader reader;
+
+    public ConsoleAsker(BufferedReader reader) {
+        this.reader = reader;
+    }
+
+
 
     public Car readCar() {
         Car car = new Car();
@@ -31,7 +37,6 @@ public class ConsoleAsker extends AbstractAsker {
 
     public String readString() {
         try {
-            BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
             return reader.readLine();
         } catch (IOException e) {
             throw new RuntimeException("Не удалось открыть поток чтения. Повторите.");
@@ -40,7 +45,6 @@ public class ConsoleAsker extends AbstractAsker {
 
     public Float readFloat() {
         try {
-            BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
             String ans = reader.readLine();
             return Float.parseFloat(ans);
         } catch (IOException e) {
@@ -52,18 +56,7 @@ public class ConsoleAsker extends AbstractAsker {
 
     public Boolean readBool() {
         try {
-            BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-            String ans = reader.readLine();
-            switch (ans.toLowerCase()) {
-                case "true", "t" -> {
-                    return true;
-                }
-                case "false", "f" -> {
-                    return false;
-                }
-                default -> throw new ValidationException(
-                    "Вы ввели неверное значение, необходимо true/false");
-            }
+            return Convertor.toBoolean(reader.readLine());
         } catch (IOException e) {
             throw new RuntimeException("Не удалось открыть поток чтения. Повторите.");
         }
@@ -76,8 +69,7 @@ public class ConsoleAsker extends AbstractAsker {
 
 
     public Float impactSpeed() {
-        System.out.println(
-            "Введите значение impact speed. Не может быть null и принимает числовое значение.");
+        System.out.println("Введите значение impact speed. Не может быть null и принимает числовое значение.");
         return readFloat();
     }
 
@@ -121,76 +113,33 @@ public class ConsoleAsker extends AbstractAsker {
     public Coordinates coordinates() {
         Coordinates coordinates = new Coordinates();
         try {
-            BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
             System.out.println("Введите координату х ");
-            String xStr = reader.readLine();
-            Integer x = Integer.parseInt(xStr);
+            coordinates.setX(Convertor.getCoordinatesX(reader));
             System.out.println("Введите координату у ");
-            String yStr = reader.readLine();
-            double y = Double.parseDouble(yStr);
-            if (y < -897) {
-                throw new ValidationException("Значение Y должно быть больше -897");
-            }
-            coordinates.setX(x);
-            coordinates.setY(y);
+            coordinates.setY(Convertor.getCoordinatesY(reader));
             return coordinates;
         } catch (IOException e) {
             System.out.println("Ошибка открытия потока чтения");
-        } catch (NumberFormatException ex) {
-            System.out.println("Координаты являются числами.");
         }
         return coordinates;
     }
 
     public Mood mood() {
-        System.out.println(
-            "Введите настроение HumanBeing: (SORROW - 1, GLOOM - 2, APATHY - 3, CALM - 4, RAGE - 5)");
-        switch (readString().toLowerCase().trim()) {
-            case "sorrow", "1" -> {
-                return Mood.SORROW;
-            }
-            case "gloom", "2" -> {
-                return Mood.GLOOM;
-            }
-            case "apathy", "3" -> {
-                return Mood.APATHY;
-            }
-            case "calm", "4" -> {
-                return Mood.CALM;
-            }
-            case "rage", "5" -> {
-                return Mood.RAGE;
-            }
-            default -> throw new ValidationException(
-                "Вы ввели значение не из списка. Настроение не может быть null.");
-        }
+        System.out.println("Введите настроение HumanBeing: (SORROW - 1, GLOOM - 2, APATHY - 3, CALM - 4, RAGE - 5)");
+        return Convertor.toMood(readString());
     }
 
     public WeaponType weaponType() {
         System.out.println("Введите оружие HumanBeing: (AXE - 1, SHOTGUN - 2, BAT - 3, null - 0)");
-        switch (readString().toLowerCase().trim()) {
-            case "axe", "1" -> {
-                return WeaponType.AXE;
-            }
-            case "shotgun", "2" -> {
-                return WeaponType.SHOTGUN;
-            }
-            case "bat", "3" -> {
-                return WeaponType.BAT;
-            }
-            case "null", "0", "" -> {
-                return null;
-            }
-            default -> throw new ValidationException("Вы ввели значение не из списка");
-        }
+        return Convertor.toWT(readString());
     }
 
     public Car car() {
         return readCar();
     }
 
-    public HumanBeingRequestDTOBuilder humanBeingRequestDTOBuilder() {
-        HumanBeingRequestDTOBuilder humanBeingRequestDTOBuilder = new HumanBeingRequestDTOBuilder();
+    public askerForHumanBeingRequestDTOBuilder humanBeingRequestDTOBuilder() {
+        askerForHumanBeingRequestDTOBuilder humanBeingRequestDTOBuilder = new askerForHumanBeingRequestDTOBuilder();
         humanBeingRequestDTOBuilder.setName(name())
             .setCoordinates(coordinates()).setRealHero(
                 realHero()).setHasToothpick(hasToothPick());

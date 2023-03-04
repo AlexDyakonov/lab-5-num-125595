@@ -13,7 +13,7 @@ import java.util.Objects;
 import java.util.Set;
 
 import static client.ui.ConsoleColors.*;
-import static client.utility.Converter.*;
+import static client.utility.Convertor.*;
 
 /**
  * The type File manager.

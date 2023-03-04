@@ -27,7 +27,7 @@ public class ScriptExecutor {
 
     public ScriptExecutor() {
         this.userController = new HumanBeingControllerImpl();
-        this.commandExecutor = new CommandExecutor(new ConsoleAsker());
+        this.commandExecutor = new CommandExecutor(new ConsoleAsker(new BufferedReader(new InputStreamReader(System.in))));
     }
 
     // основной метод, запускает выполнение скрипта

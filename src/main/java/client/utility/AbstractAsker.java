@@ -85,5 +85,5 @@ public abstract class AbstractAsker {
      *
      * @return the human being request dto builder
      */
-    public abstract HumanBeingRequestDTOBuilder humanBeingRequestDTOBuilder();
+    public abstract askerForHumanBeingRequestDTOBuilder humanBeingRequestDTOBuilder();
 }

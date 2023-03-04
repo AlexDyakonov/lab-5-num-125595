@@ -15,7 +15,7 @@ public class ConsoleUI {
     private final CommandExecutor commandExecutor;
 
     public ConsoleUI() {
-        this.commandExecutor = new CommandExecutor(new ConsoleAsker());
+        this.commandExecutor = new CommandExecutor(new ConsoleAsker(new BufferedReader(new InputStreamReader(System.in))));
     }
 
     public void start() {
