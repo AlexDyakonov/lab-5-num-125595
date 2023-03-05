@@ -14,19 +14,20 @@ import java.util.List;
 import static client.ui.ConsoleColors.GREEN_BRIGHT;
 import static client.ui.ConsoleColors.RESET;
 
-
-public class CommandExecutor {
+public class CommandExecutor implements Executor {
 
     private final HumanBeingController humanBeingController;
     private final AbstractAsker asker;
     private askerForHumanBeingRequestDTOBuilder humanBeingRequestDTOBuilder;
-    private final List<String> commandsList;
+    private final List<String> historyCommandsList;
+    private ScriptExecutor scriptExecutor;
 
     public CommandExecutor(AbstractAsker asker) {
         this.asker = asker;
         this.humanBeingController = new HumanBeingControllerImpl();
         this.humanBeingRequestDTOBuilder = new askerForHumanBeingRequestDTOBuilder();
-        this.commandsList = new ArrayList<>();
+        this.historyCommandsList = new ArrayList<>();
+        this.scriptExecutor = new ScriptExecutor();
     }
 
     public void menu() {
@@ -42,11 +43,14 @@ public class CommandExecutor {
         }
     }
 
-
     public void execute(String inputCommand) {
         String[] commandArgs = inputCommand.split(" ");
+        String filePath = null;
+        if (commandArgs.length > 1) {
+            filePath = commandArgs[1];
+        }
         String command = commandArgs[0];
-        commandsList.add(Arrays.toString(commandArgs));
+        historyCommandsList.add(Arrays.toString(commandArgs));
         String id;
 
         try {
@@ -114,8 +118,7 @@ public class CommandExecutor {
                 case "execute_script" -> {
                     checkCommandArg(commandArgs, 1);
                     System.out.println("запуск скрипта");
-                    ScriptExecutor scriptExecutor = new ScriptExecutor();
-                    scriptExecutor.executeScript(commandArgs[1]);
+                    scriptExecutor.executeScript(filePath);
                 }
                 case "add_if_max" -> {
                     checkCommandArg(commandArgs, 0);
@@ -129,11 +132,11 @@ public class CommandExecutor {
                 }
                 case "history" -> {
                     checkCommandArg(commandArgs, 0);
-                    if (commandsList.size() < MenuConstants.HISTORY_SIZE) {
-                        System.out.println(commandsList);
+                    if (historyCommandsList.size() < MenuConstants.HISTORY_SIZE) {
+                        System.out.println(historyCommandsList);
                     } else {
                         for (int i = 1; i <= MenuConstants.HISTORY_SIZE; i++) {
-                            System.out.print(commandsList.get(commandsList.size() - i) + " ");
+                            System.out.print(historyCommandsList.get(historyCommandsList.size() - i) + " ");
                         }
                     }
                 }
@@ -162,7 +165,7 @@ public class CommandExecutor {
 
     }
 
-    public List<String> getCommandsList() {
-        return commandsList;
+    public List<String> getHistoryCommandsList() {
+        return historyCommandsList;
     }
 }

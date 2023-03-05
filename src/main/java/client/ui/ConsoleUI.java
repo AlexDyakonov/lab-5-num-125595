@@ -4,7 +4,6 @@ import client.utility.ConsoleAsker;
 import server.services.CommandExecutor;
 
 import java.io.BufferedReader;
-import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Objects;
 
@@ -24,7 +23,7 @@ public class ConsoleUI {
         String line;
 
         try (BufferedReader reader = new BufferedReader(new InputStreamReader(System.in))) {
-        while (!Objects.equals(line = reader.readLine(), "exit")) {
+            while (!Objects.equals(line = reader.readLine(), "exit")) {
                 commandExecutor.execute(line);
             }
         } catch (Exception e) {

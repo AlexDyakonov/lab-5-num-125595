@@ -11,6 +11,17 @@ public class App {
      * @param args the input arguments
      */
     public static void main(String[] args) {
-        new ConsoleUI().start();
+        ConsoleUI session = new ConsoleUI();
+        session.start();
+
+//        ScriptExecutor executor = new ScriptExecutor();
+
+//        List<String> result = executor.readCommandFromFile("src/main/resources/script");
+//
+//        result.forEach(System.out::println);
+
+
+
+
     }
 }
