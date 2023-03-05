@@ -1,7 +1,2 @@
 id,name,coordinates,creationDate,realHero,hasToothpick,impactSpeed,SoundTrackName,weaponType,mood,car
-9af3ca27-9121-4200-b522-a9af88fa5877,Rayan,(999;999.0),2023-02-21T02:37:39.298088800,true,true,999999.0,Nightcall,SHOTGUN,CALM,(Bebra;true)
-8fd6881d-8b42-48e0-bd55-d52d748457aa,Bebra,(0;0.0),2023-02-21T02:38:37.270943,false,false,0.0,BebrikMusic,AXE,SORROW,(null)
-631f8295-1280-41af-b455-5cc23cee73ec,Bebrik2,(1;1.0),2023-02-21T02:39:25.659534100,true,false,-500.0,MbGek,SHOTGUN,GLOOM,(null)
-aba735a8-f1eb-4ada-a7a4-8c6cf324d354,"",(1;1.0),2023-02-21T10:42:05.932874900,true,true,-100.0,t,AXE,SORROW,(null)
-93ae83e9-7715-4980-b964-977760a0e31a,1,(1;1.0),2023-03-04T16:58:45.870244800,true,true,1.0,1,AXE,SORROW,(null)
-f2f5e211-5579-4d6e-8926-f4bf75780463,asd%COMMA%asd,(1;1.0),2023-03-04T17:00:08.128592900,true,true,1.0,1,AXE,SORROW,(null)
+816e2254-cd74-404a-87e3-898bbf654874,Rayan,(1;1.0),2023-03-05T12:01:02.400747800,true,true,999999.0,RealHero,BAT,APATHY,(BigCar;true)

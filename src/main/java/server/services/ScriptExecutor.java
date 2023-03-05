@@ -5,10 +5,7 @@ import server.controller.HumanBeingController;
 import server.controller.HumanBeingControllerImpl;
 import server.exception.FileException;
 
-import java.io.BufferedReader;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
@@ -40,8 +37,10 @@ public class ScriptExecutor {
         List<String> commandFromFile = new LinkedList<>();
         try (BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream(filename)))) {
             commandFromFile.add(reader.readLine());
-        } catch (IOException e) {
-            throw new FileException(filename + " file reading error");
+        } catch (FileNotFoundException e) {
+            throw new FileException(filename + " не был найден.");
+        } catch (IOException e){
+            throw new FileException(filename + " не был найден2."); //TODO проверить ошибки
         }
         return commandFromFile;
     }

@@ -115,7 +115,7 @@ public class CommandExecutor {
                     checkCommandArg(commandArgs, 1);
                     System.out.println("запуск скрипта");
                     ScriptExecutor scriptExecutor = new ScriptExecutor();
-                    scriptExecutor.executeScript("file name from args");
+                    scriptExecutor.executeScript(commandArgs[1]);
                 }
                 case "add_if_max" -> {
                     checkCommandArg(commandArgs, 0);
