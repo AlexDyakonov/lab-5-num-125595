@@ -24,6 +24,7 @@ public class ConsoleAsker {
             return car;
         }
     }
+
     private static String readString(){
         try {
             BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
