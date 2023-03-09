@@ -4,7 +4,7 @@ import server.controller.HumanBeingControllerImpl;
 import server.dao.HumanBeingDAOImpl;
 import server.exception.ArgumentException;
 import server.services.HumanBeingServiceImpl;
-import client.utility.Asker;
+import client.utility.ConsoleAsker;
 import client.utility.HumanBeingRequestDTOBuilder;
 
 
@@ -70,14 +70,14 @@ public class ConsoleUI {
                         System.out.println("Выведены все элементы коллекции. ");
                         break;
                     case "add":
-                        humanBeingBuilder = Asker.humanBeingRequestDTOBuilder();
+                        humanBeingBuilder = ConsoleAsker.humanBeingRequestDTOBuilder();
                         System.out.println(userController.addElementToCollection(humanBeingBuilder.build()).toString() + " был добавлен");
                         break;
                     case "update":
                         try {
                             id = (commandArr[1]);
                             if (userController.findById(id)){
-                                System.out.println(userController.updateById(id, Asker.humanBeingRequestDTOBuilder().build()).toString() + " был обновлен");
+                                System.out.println(userController.updateById(id, ConsoleAsker.humanBeingRequestDTOBuilder().build()).toString() + " был обновлен");
                             }else {
                                 System.out.println("Объекта с id " + id + " не было найдено. Ничего не обновлено");
                             }
@@ -106,10 +106,10 @@ public class ConsoleUI {
                         System.out.println("Скрипт");
                         break;
                     case "add_if_max":
-                        userController.addIfMax(Asker.humanBeingRequestDTOBuilder().build());
+                        userController.addIfMax(ConsoleAsker.humanBeingRequestDTOBuilder().build());
                         break;
                     case "add_if_min":
-                        userController.addIfMin(Asker.humanBeingRequestDTOBuilder().build());
+                        userController.addIfMin(ConsoleAsker.humanBeingRequestDTOBuilder().build());
                         break;
                     case "history":
                         if (commandsList.size() < MenuConstants.HISTORY_SIZE){
@@ -125,7 +125,7 @@ public class ConsoleUI {
                         System.out.println(GREEN_BRIGHT + "Выведен элемент коллекции с максимальным Impact speed." + RESET);
                         break;
                     case "count_by_mood":
-                        userController.countByMood(Asker.mood());
+                        userController.countByMood(ConsoleAsker.mood());
                         break;
                     case "print_ascending":
                         System.out.println(userController.printAscending());

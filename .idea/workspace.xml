@@ -4,9 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6ea2767c-74c4-4051-9819-b05d03d800e2" name="Changes" comment="Fixed infinity loop bug">
+    <list default="true" id="6ea2767c-74c4-4051-9819-b05d03d800e2" name="Changes" comment="Refactored to Server/User">
+      <change afterPath="$PROJECT_DIR$/src/main/java/client/utility/Convertor.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Validation/ValidationImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Validation/ValidationImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/client/ui/ConsoleUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/client/ui/ConsoleUI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/client/utility/Asker.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/client/utility/ConsoleAsker.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -25,7 +27,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="f6eb54bf0bbe103af60b88c33c4c667d3b1a2490" />
+        <entry key="$PROJECT_DIR$" value="dc665835a1288ccdd0b3315c3438eafe48834559" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -63,11 +65,11 @@
       </method>
     </configuration>
     <configuration name="ScriptExecuter" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="utility.ScriptExecuter" />
+      <option name="MAIN_CLASS_NAME" value="client.utility.ScriptExecuter" />
       <module name="lab-5-num-125595" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="utility.*" />
+          <option name="PATTERN" value="client.utility.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -77,10 +79,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.ScriptExecuter" />
+        <item itemvalue="Application.App" />
         <item itemvalue="Application.App" />
         <item itemvalue="Application.ScriptExecuter" />
         <item itemvalue="Application.ScriptExecuter" />
-        <item itemvalue="Application.App" />
       </list>
     </recent_temporary>
   </component>
@@ -218,7 +221,21 @@
       <option name="project" value="LOCAL" />
       <updated>1677019015543</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="Added MenuConstants.java">
+      <created>1678347020772</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1678347020773</updated>
+    </task>
+    <task id="LOCAL-00018" summary="Refactored to Server/User">
+      <created>1678347090027</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1678347090027</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -264,6 +281,8 @@
     <MESSAGE value="Added remove_by_id method. Catched some exceptions" />
     <MESSAGE value="Added print_ascending command. Commit before refactoring project to change Long id to UUID" />
     <MESSAGE value="Added validator class, added UI colors. Realised scanning csv file with database, realised loading of DB" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added validator class, added UI colors. Realised scanning csv file with database, realised loading of DB" />
+    <MESSAGE value="Added MenuConstants.java" />
+    <MESSAGE value="Refactored to Server/User" />
+    <option name="LAST_COMMIT_MESSAGE" value="Refactored to Server/User" />
   </component>
 </project>

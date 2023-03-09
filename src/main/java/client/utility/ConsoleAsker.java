@@ -10,7 +10,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-public class Asker {
+public class ConsoleAsker {
     private static Car readCar(){
         Car car = new Car();
         System.out.println("Введите название машины. Если ее нет, то введите null/0/пустую строку");
@@ -158,8 +158,8 @@ public class Asker {
     }
     public static HumanBeingRequestDTOBuilder humanBeingRequestDTOBuilder(){
         HumanBeingRequestDTOBuilder humanBeingRequestDTOBuilder = new HumanBeingRequestDTOBuilder();
-        humanBeingRequestDTOBuilder.setName(Asker.name()).setCoordinates(Asker.coordinates()).setRealHero(Asker.realHero()).setHasToothpick(Asker.hasToothPick());
-        humanBeingRequestDTOBuilder.setImpactSpeed(Asker.impactSpeed()).setSoundtrackName(Asker.soundtrackName()).setWeaponType(Asker.weaponType()).setMood(Asker.mood()).setCar(Asker.car());
+        humanBeingRequestDTOBuilder.setName(ConsoleAsker.name()).setCoordinates(ConsoleAsker.coordinates()).setRealHero(ConsoleAsker.realHero()).setHasToothpick(ConsoleAsker.hasToothPick());
+        humanBeingRequestDTOBuilder.setImpactSpeed(ConsoleAsker.impactSpeed()).setSoundtrackName(ConsoleAsker.soundtrackName()).setWeaponType(ConsoleAsker.weaponType()).setMood(ConsoleAsker.mood()).setCar(ConsoleAsker.car());
         return humanBeingRequestDTOBuilder;
     }
 
