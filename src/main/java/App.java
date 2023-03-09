@@ -1,4 +1,4 @@
-import ui.ConsoleUI;
+import client.ui.ConsoleUI;
 
 public class App {
     public static void main(String[] args) {
