@@ -1,12 +1,12 @@
 package client.utility;
 
-import server.Validation.ValidationImpl;
+import server.controller.ValidationImpl;
 import server.model.*;
 
 import java.time.LocalDateTime;
 import java.util.UUID;
 
-import static server.Validation.ValidationImpl.validate;
+import static server.controller.ValidationImpl.validate;
 
 
 public class HumanBeingResponseDTOBuilder {

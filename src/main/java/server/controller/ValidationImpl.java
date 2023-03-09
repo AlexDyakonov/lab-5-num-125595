@@ -1,4 +1,4 @@
-package server.Validation;
+package server.controller;
 
 import server.exception.ValidationException;
 import server.model.Coordinates;

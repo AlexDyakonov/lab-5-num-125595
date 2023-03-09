@@ -1,8 +1,8 @@
 package server.dao.DataBase;
 
 import server.model.HumanBeing;
-import client.utility.FileManager;
-import client.utility.FileManagerImpl;
+import server.file.FileManager;
+import server.file.FileManagerImpl;
 
 import java.time.LocalDateTime;
 import java.util.LinkedHashSet;

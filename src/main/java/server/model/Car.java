@@ -1,10 +1,10 @@
 package server.model;
 
-import server.Validation.ValidationImpl;
+import server.controller.ValidationImpl;
 
 import java.util.Objects;
 
-import static server.Validation.ValidationImpl.validate;
+import static server.controller.ValidationImpl.validate;
 
 public class Car {
     private String name; //Поле не может быть null

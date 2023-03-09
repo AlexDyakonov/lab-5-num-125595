@@ -14,22 +14,8 @@ import java.time.LocalDateTime;
 import static client.ui.ConsoleColors.*;
 
 public class Convertor {
-    public static String toStr(String line){
+    public static String fromFileToStr(String line){
         return line.replace("%COMMA%", ",");
-    }
-
-    /**
-     * To long long.
-     *
-     * @param line the line
-     * @return the long
-     */
-    public static Long toLong(String line){
-        try {
-            return Long.parseLong(line);
-        } catch (NumberFormatException e) {
-            throw new FileException(RED + line + RED_BRIGHT + " не соответствует требованию. Id в файле должно быть типа long. Запись будет проигнорирована" + RESET);
-        }
     }
 
     /**
@@ -57,12 +43,12 @@ public class Convertor {
      * @param line the line
      * @return the coordinates
      */
-    public static Coordinates toCoordinates(String line){ // (1;1.0)
+    public static Coordinates fromFiletoCoordinates(String line){ // (1;1.0)
         String[] coordArr = line.replaceAll("[()]", "").split(";");
-        Coordinates coordinates = new Coordinates();
         if (coordArr.length != 2){
             throw new FileException(RED_BRIGHT + "Количество координат больше 2. Запись будет проигнорирована"+ RESET);
         }
+        Coordinates coordinates = new Coordinates();
         try {
             Integer x = Integer.parseInt(coordArr[0].trim());
             Double y = Double.parseDouble(coordArr[1].trim());

@@ -1,9 +1,9 @@
 package client.utility;
 
-import server.Validation.ValidationImpl;
+import server.controller.ValidationImpl;
 import server.model.*;
 
-import static server.Validation.ValidationImpl.validate;
+import static server.controller.ValidationImpl.validate;
 
 public class HumanBeingRequestDTOBuilder {
     private String name;
